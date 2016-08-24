@@ -8,7 +8,7 @@ local hyper = {"ctrl", "alt", "cmd"}
 
 -- Load External Config Files
 require('battery')
-
+require('netdrives')
 
 hs.grid.setGrid('12x12') -- allows us to place on quarters, thirds and halves
 hs.window.animationDuration = 0 -- disable animations
