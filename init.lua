@@ -6,10 +6,6 @@ hs.logger.defaultLogLevel = "debug"
 local log = hs.logger.new('mymodule','debug')
 local hyper = {"ctrl", "alt", "cmd"}
 
--- Load External Config Files
-require('battery')
-require('netdrives')
-
 hs.grid.setGrid('12x12') -- allows us to place on quarters, thirds and halves
 hs.window.animationDuration = 0 -- disable animations
 
@@ -146,8 +142,5 @@ hs.hotkey.bind(hyper,"delete", function()
   hs.caffeinate.lockScreen()
   hs.alert.show("startScreensaver")
 end)
-
---hs.hotkey.bind(hyper,"0", hideAll)
--- arrangeOmnifocus()
 
 hs.pathwatcher.new(os.getenv('HOME') .. '/.hammerspoon/', hs.reload):start()
