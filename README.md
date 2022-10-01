@@ -6,6 +6,7 @@ My Hammerspoon config files
 clone this project into your local git repo. I use ~/git/dotfiles/Hammerspoon
 Create a symlink it to ~/.hammerspoon
 
+Install the "SpoonInstall" Spoon in order to bootstrap the rest of the configuration
 ## What it does
 
 My Hammerspoon setup does a number of things
