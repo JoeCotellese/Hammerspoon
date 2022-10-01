@@ -48,10 +48,30 @@ spoon.ShiftIt:setWindowCyclingSizes({ 50, 33, 67 }, { 50 })
 -- Arrange Desktop lets you save window arrangements
 -- similar to Moom's functionality
 -- https://sprak3000.github.io/blog/2021/12/arrange-desktop-hammerspoon/
+
+function getSFProSymbol(code)
+-- code = 0x1003DD -- change to the number you found in the process described above
+  char = hs.styledtext.new(utf8.char(code), { font = { name = "SF Pro", size = 16 } })
+  -- if you can use the symbol as a styled text object, then this is all you need
+
+  -- if you need it as an image, then also do the following
+  canvas = hs.canvas.new({ x = 0, y = 0, h = 0, w = 0 })
+  canvas:size(canvas:minimumTextSize(char))
+  canvas[#canvas + 1] = {
+      type = "text",
+      text = char
+  }
+  image = canvas:imageFromCanvas()
+  canvas:delete() -- won't auto collect yet
+  return image
+end
+
+iconImage = getSFProSymbol(0x1003dd)
+
 spoon.SpoonInstall:andUse("ArrangeDesktop")
 desktopMenubar = hs.menubar.new()
 if desktopMenubar then
-  desktopMenubar:setIcon(hs.image.imageFromName("NSHandCursor"))
+  desktopMenubar:setIcon(iconImage)
     local menuItems = {}
     menuItems = spoon.ArrangeDesktop:addMenuItems(menuItems)
     desktopMenubar:setMenu(menuItems)
