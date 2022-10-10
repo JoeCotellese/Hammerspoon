@@ -27,12 +27,12 @@ spoon.ShiftIt:bindHotkeys(
   {
     left = { hyper, 'j' },
     right = { hyper, 'l' },
-    up = { hyper, 'up' },
-    down = { hyper, 'down' },
-    upleft = { hyper, '1' },
-    upright = { hyper, '2' },
-    botleft = { hyper, '3' },
-    botright = { hyper, '4' },
+    up = { hyper, 'i' },
+    down = { hyper, ',' },
+    upleft = { hyper, 'u' },
+    upright = { hyper, 'o' },
+    botleft = { hyper, 'n' },
+    botright = { hyper, '.' },
     maximum = { hyper, 'm' },
     toggleFullScreen = { hyper, 'f' },
     toggleZoom = { hyper, 'z' },
@@ -70,12 +70,12 @@ iconImage = getSFProSymbol(0x1003dd)
 
 spoon.SpoonInstall:andUse("ArrangeDesktop")
 desktopMenubar = hs.menubar.new()
-if desktopMenubar then
-  desktopMenubar:setIcon(iconImage)
-    local menuItems = {}
-    menuItems = spoon.ArrangeDesktop:addMenuItems(menuItems)
-    desktopMenubar:setMenu(menuItems)
-end
+-- if desktopMenubar then
+--   desktopMenubar:setIcon(iconImage)
+--     local menuItems = {}
+--     menuItems = spoon.ArrangeDesktop:addMenuItems(menuItems)
+--     desktopMenubar:setMenu(menuItems)
+-- end
 
 -- lock the screen ala Windows NT
 hs.hotkey.bind(hyper,"delete", function()
