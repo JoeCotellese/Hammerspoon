@@ -89,7 +89,8 @@ spoon.ShiftIt:setWindowCyclingSizes({ 50, 33, 67 }, { 50 })
 -- end
 
 -- lock the screen ala Windows NT
-hs.hotkey.bind(hyper,"delete", function()
+hs.hotkey.bind(hyper,"forwarddelete", function()
+  _log("startScreensaver")
   hs.caffeinate.lockScreen()
   hs.alert.show("startScreensaver")
 end)
