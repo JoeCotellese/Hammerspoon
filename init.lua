@@ -2,8 +2,19 @@
 -- A lot of this was swiped from wincent on GitHub
 -- https://github.com/wincent/wincent/blob/master/roles/dotfiles/files/.hammerspoon/init.lua
 
-hs.logger.defaultLogLevel = "debug"
+hs.logger.defaultLogLevel = "info"
 local log = hs.logger.new('mymodule','debug')
+
+-- global functions
+function getFunctionLocation()
+  local w = debug.getinfo(3, "S")
+  return w.short_src:gsub(".*/", "") .. ":" .. w.linedefined
+end
+
+function _log(message)
+  local location = getFunctionLocation()
+  print(location .. ": " .. message)
+end
 
 
 -- hyper is the global key that triggers Hammerspoon functions.
@@ -82,5 +93,40 @@ hs.hotkey.bind(hyper,"delete", function()
   hs.caffeinate.lockScreen()
   hs.alert.show("startScreensaver")
 end)
+
+
+-- Defeat paste blocking
+hs.hotkey.bind({"cmd", "alt"}, "V", function() 
+  hs.eventtap.keyStrokes(hs.pasteboard.getContents()) 
+end)
+
+-- hs.urlevent.bind("arrangeOmnifocus"
+
+function arrangeOmnifocusWindows(eventName, params)
+  hs.alert.show("arrangeOmnifocus")
+  local inbox = hs.window.find("Inbox"):focus()
+  inbox.focus()
+  spoon.ShiftIt.upleft()
+end
+
+hs.hotkey.bind(hyper,"7", arrangeOmnifocusWindows)
+
+spoon.SpoonInstall:andUse("Emojis")
+spoon.Emojis:bindHotkeys({
+  toggle = { hyper, "e" },
+})
+
+function windowFullScreen(appName)
+  local app = hs.application.find(appName)
+  local win = app:mainWindow()
+  win:setFullScreen(true)
+end
+
+-- hs.hotkey.bind(hyper, "o", windowFullScreen("OmniFocus"))
+
+-- configure modules
+camera = require("camera")
+camera.init()
+
 
 hs.pathwatcher.new(os.getenv('HOME') .. '/.hammerspoon/', hs.reload):start()
