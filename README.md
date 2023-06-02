@@ -11,5 +11,8 @@ Install the "SpoonInstall" Spoon in order to bootstrap the rest of the configura
 
 My Hammerspoon setup does a number of things
 * Sets up hot keys to allow me to resize and throw my windows around between screens
+* Has an override for websites that block paste functions
+* Triggers a shortcut when someone starts or stops the camera. I use this to turn on and off focus modes
+
 
 
