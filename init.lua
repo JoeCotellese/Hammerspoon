@@ -129,5 +129,7 @@ end
 camera = require("camera")
 camera.init()
 
+-- loac the launcher
+require("launch")
 
 hs.pathwatcher.new(os.getenv('HOME') .. '/.hammerspoon/', hs.reload):start()
